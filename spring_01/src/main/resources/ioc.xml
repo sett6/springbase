@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+<!--        placehholder 占位符-->
+    <!--        注册一个 person 对象-->
+    <bean class="icu.sett.bean.Person" id="person01">
+<!--      是通过sett 注入的 ，默认是单例bean,是在容器启动中就创建好的-->
+        <property name="age" value="18"></property>
+        <property name="name" value="chenxiao"></property>
+    </bean>
+    <bean class="icu.sett.bean.Person" id="person02" parent="person01">
+        <property name="age" value="20"/>
+    </bean>
+    <bean id="personfactorybean" class="icu.sett.bean.PersonFactoryBean"></bean>
+    <bean id="postprocessor" class="icu.sett.bean.MyBeanPostProcessor"></bean>
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="username" value="root"/>
+        <property name="password" value="root"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/guli?serverTimezone=GMT%2B8"/>
+    </bean>
+    <context:component-scan base-package="icu.sett"/>
+</beans>
